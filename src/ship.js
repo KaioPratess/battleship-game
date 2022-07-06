@@ -9,8 +9,9 @@ function Ship(size) {
     }
   };
 
-  const hit = (i) => {
-    length[i] = 'hit';
+  const hit = (a, i) => {
+    const array = a;
+    array[i] = 'hit';
     isSunk();
   };
 
@@ -19,4 +20,10 @@ function Ship(size) {
   };
 }
 
-export default Ship;
+const carrier = Ship(5);
+const battleship = Ship(4);
+const destroyer = Ship(3);
+const submarine = Ship(3);
+const patrol = Ship(2);
+
+export default carrier;

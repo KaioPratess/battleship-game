@@ -1,5 +1,5 @@
 function Ship(size) {
-  const length = new Array(size).fill('0');
+  const length = new Array(size).fill().map((_, index) => index);
   // eslint-disable-next-line no-unused-vars
   let sunk = false;
 
@@ -26,4 +26,6 @@ const destroyer = Ship(3);
 const submarine = Ship(3);
 const patrol = Ship(2);
 
-export default carrier;
+export {
+  carrier, battleship, destroyer, submarine, patrol,
+};

@@ -1,5 +1,10 @@
+/* eslint-disable no-plusplus */
+import * as ships from './ship';
+
 function GameBoard() {
   const matrix = new Array(10).fill(0).map(() => new Array(10).fill(0));
+
+  const sunkShips = [];
 
   const placeShip = (grid, line, col, name, size, axis) => {
     const position = grid[line][col];
@@ -38,7 +43,16 @@ function GameBoard() {
     }
   };
 
-  return { placeShip };
+  const receiveAttack = (grid, line, col) => {
+    const position = grid[line][col];
+    if (position !== 0 && position !== 1) {
+      ships[position].hit(0);
+    } else {
+      grid[line][col] = 1;
+    }
+  };
+
+  return { placeShip, receiveAttack };
 }
 
 const board1 = GameBoard();

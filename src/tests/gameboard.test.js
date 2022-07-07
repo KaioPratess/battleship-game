@@ -12,10 +12,11 @@ test('Place Ship', () => {
   expect(grid[0][3] && grid[1][3] && grid[2][3] && grid[3][3]).toBe('patrol');
 });
 
-test('Receive Attack', () => {
-  board1.receiveAttack(grid, 0, 0);
-  board1.receiveAttack(grid, 0, 1);
-  board1.receiveAttack(grid, 0, 2);
+// test('Receive Attack', () => {
+//   board1.receiveAttack(grid, 0, 0);
+//   board1.receiveAttack(grid, 0, 1);
+//   board1.receiveAttack(grid, 0, 2);
 
-  expect(grid[0][0] && grid[0][1] && grid[0][2]).toBe('hit');
-});
+//   expect(grid[0][0] && grid[0][1] && grid[0][2]).toBe('hit');
+
+// });

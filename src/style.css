@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  gap: 60px;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 6.25rem;
+}
+
+.game-container {
+  display: flex;
+  gap: 100px;
+  margin-bottom: 50px;
+}
+
+.game-container > div {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+
+.game-container > div p {
+  font-size: 1.5rem;
+}
+
+.square {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-1, .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+
+.footer {
+  padding-bottom: 20px;
+}

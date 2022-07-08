@@ -1,5 +1,6 @@
 /* eslint-disable no-plusplus */
 import * as ships from './ship';
+import events from './pubSub';
 
 function GameBoard() {
   const matrix = new Array(10).fill(0).map(() => new Array(10).fill(0));
@@ -9,7 +10,7 @@ function GameBoard() {
   const placeShip = (grid, line, col, name, size, axis) => {
     const position = grid[line][col];
     if (position === 0) {
-      if (axis === 'x' && (size + col) <= grid[line].length - 1) {
+      if (axis === 'x' && (size + col) <= grid[line].length) {
         const verificationArray = [];
         for (let i = col; i <= (size + col) - 1; i++) {
           if (grid[line][i] === 0) {
@@ -21,9 +22,9 @@ function GameBoard() {
             grid[line][i] = name;
           }
         } else {
-          throw Error('adjacent spots unavailable');
+          events.publish('unavailable', `${name}, ${size}, ${axis}`);
         }
-      } else if (axis === 'y' && (size + line) <= grid.length - 1) {
+      } else if (axis === 'y' && (size + line) <= grid.length) {
         const verificationArray = [];
         for (let i = line; i <= (size + line) - 1; i++) {
           if (grid[i][col] === 0) {
@@ -35,11 +36,13 @@ function GameBoard() {
             grid[i][col] = name;
           }
         } else {
-          throw Error('adjacent spots unavailable');
+          events.publish('unavailable', `${name}, ${size}, ${axis}`);
         }
+      } else {
+        events.publish('unavailable', `${name}, ${size}, ${axis}`);
       }
     } else {
-      throw Error('spot unavailable');
+      events.publish('unavailable', `${name}, ${size}, ${axis}`);
     }
   };
 
@@ -52,9 +55,7 @@ function GameBoard() {
     }
   };
 
-  return { placeShip, receiveAttack };
+  return { placeShip, receiveAttack, matrix };
 }
 
-const board1 = GameBoard();
-
-export default board1;
+export default GameBoard;

@@ -1,19 +1,23 @@
+import events from './pubSub';
+
 function Ship(n, size) {
   const name = n;
-  const length = new Array(size).fill().map((_, index) => index);
+  const length = [];
   // eslint-disable-next-line no-unused-vars
   let sunk = false;
 
   const isSunk = () => {
-    if (length.every((part) => part === 'hit')) {
+    if (length.length === size && length.every((part) => part === 'hit')) {
       sunk = true;
+      events.publish('sunk', name);
     }
   };
 
-  const hit = (a, i) => {
-    const array = a;
-    array[i] = 'hit';
-    isSunk();
+  const hit = () => {
+    if (length.length < size) {
+      length.push('hit');
+      isSunk();
+    }
   };
 
   return {

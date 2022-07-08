@@ -13,53 +13,41 @@ export default (function gameLoop() {
     const playerSquares = [];
     const machineSquares = [];
 
-    dom.renderBoard(machineBoard.matrix, dom.select.grid2Div, 'machine', machineSquares);
-
-    machineSquares.forEach((sqr) => {
-      sqr.style.cursor = 'crosshair';
-      sqr.addEventListener('mouseenter', () => {
-        sqr.style.background = 'lightgreen';
-      });
-      sqr.addEventListener('mouseout', () => {
-        sqr.style.background = 'white';
-      });
-      sqr.addEventListener('click', () => {
-        const line = sqr.getAttribute('data-line');
-        const col = sqr.getAttribute('data-col');
-        machineBoard.receiveAttack(machineBoard.matrix, line, col);
-      });
-    });
-
     // place ships
+    playerBoard.placeShip(playerBoard.matrix, 5, 3, 'carrier', 5, 'x');
+    playerBoard.placeShip(playerBoard.matrix, 0, 0, 'battleship', 4, 'y');
+    playerBoard.placeShip(playerBoard.matrix, 0, 7, 'destroyer', 3, 'x');
+    playerBoard.placeShip(playerBoard.matrix, 8, 4, 'submarine', 3, 'x');
+    playerBoard.placeShip(playerBoard.matrix, 9, 2, 'patrol', 2, 'x');
+
+    machineBoard.placeShip(machineBoard.matrix, 5, 3, 'carrier', 5, 'x');
+    machineBoard.placeShip(machineBoard.matrix, 0, 0, 'battleship', 4, 'y');
+    machineBoard.placeShip(machineBoard.matrix, 0, 7, 'destroyer', 3, 'x');
+    machineBoard.placeShip(machineBoard.matrix, 8, 4, 'submarine', 3, 'x');
+    machineBoard.placeShip(machineBoard.matrix, 9, 2, 'patrol', 2, 'x');
+
+    dom.renderBoard(machineBoard.matrix, dom.select.grid2Div, 'machine', machineSquares);
     dom.renderBoard(playerBoard.matrix, dom.select.grid1Div, 'player', playerSquares);
 
-    function randomCoord(ship, size, axis) {
-      const l = Math.floor(Math.random() * 10);
-      const c = Math.floor(Math.random() * 10);
-      playerBoard.placeShip(playerBoard.matrix, l, c, ship, size, axis);
-      dom.renderBoard(playerBoard.matrix, dom.select.grid1Div, 'player', playerSquares);
-    }
-
-    dom.select.randomBtn.addEventListener('click', (event) => {
-      playerBoard.matrix = new Array(10).fill(0).map(() => new Array(10).fill(0));
-      randomCoord('carrier', 5, 'x');
-      randomCoord('battleship', 4, 'y');
-      randomCoord('destroyer', 3, 'x');
-      randomCoord('submarine', 3, 'x');
-      randomCoord('patrol', 2, 'y');
+    // rounds
+    machineSquares.forEach((sqr) => {
+      sqr.style.cursor = 'crosshair';
+      sqr.addEventListener('click', (event) => {
+        const line = +sqr.getAttribute('data-line');
+        const col = +sqr.getAttribute('data-col');
+        machineBoard.receiveAttack(machineBoard.matrix, line, col, machineSquares);
+        events.publish('machineTurn', '');
+      });
     });
 
-    events.subscribe('unavailable', events.events, (values) => {
-      const name = values.split(',')[0];
-      const size = values.split(',')[1];
-      const axis = values.split(',')[2];
-      playerBoard.matrix = new Array(10).fill(0).map(() => new Array(10).fill(0));
-      randomCoord(name, size, axis);
-    });
-
-    // create players
     const machine = Player('Machine');
-    const player1 = Player('Player 1');
+    events.subscribe('machineTurn', events.events, () => {
+      machine.randomPlay(playerBoard.matrix);
+      events.subscribe('attack', events.events, (values) => {
+        console.log(values);
+        playerBoard.receiveAttack(playerBoard.matrix, values.rLine, values.rCol, playerSquares);
+      });
+    });
   };
 
   newGame();

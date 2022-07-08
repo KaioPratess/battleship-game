@@ -24,6 +24,9 @@ export default (function dom() {
           }
         } else if (player === 'machine') {
           array.push(square);
+          if (matrix[i][j] === 'carrier' || matrix[i][j] === 'battleship' || matrix[i][j] === 'destroyer' || matrix[i][j] === 'submarine' || matrix[i][j] === 'patrol') {
+            square.style.background = 'aqua';
+          }
         }
       }
     }

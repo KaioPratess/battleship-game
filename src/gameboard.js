@@ -5,8 +5,6 @@ import events from './pubSub';
 function GameBoard() {
   const matrix = new Array(10).fill(0).map(() => new Array(10).fill(0));
 
-  const sunkShips = [];
-
   const placeShip = (grid, line, col, name, size, axis) => {
     const position = grid[line][col];
     if (position === 0) {
@@ -23,6 +21,7 @@ function GameBoard() {
           }
         } else {
           events.publish('unavailable', `${name}, ${size}, ${axis}`);
+          throw Error('unavailable');
         }
       } else if (axis === 'y' && (size + line) <= grid.length) {
         const verificationArray = [];
@@ -37,23 +36,50 @@ function GameBoard() {
           }
         } else {
           events.publish('unavailable', `${name}, ${size}, ${axis}`);
+          throw Error('unavailable');
         }
       } else {
         events.publish('unavailable', `${name}, ${size}, ${axis}`);
+        throw Error('unavailable');
       }
     } else {
       events.publish('unavailable', `${name}, ${size}, ${axis}`);
+      throw Error('unavailable');
     }
   };
 
-  const receiveAttack = (grid, line, col) => {
+  const receiveAttack = (grid, line, col, array) => {
     const position = grid[line][col];
     if (position !== 0 && position !== 1) {
-      ships[position].hit(0);
+      ships[position].hit();
+      array.forEach((item) => {
+        const l = item.getAttribute('data-line');
+        const c = item.getAttribute('data-col');
+        if (l == line && c == col) {
+          item.style.background = 'red';
+        }
+      });
     } else {
       grid[line][col] = 1;
+      array.forEach((item) => {
+        const l = item.getAttribute('data-line');
+        const c = item.getAttribute('data-col');
+        if (l == line && c == col) {
+          item.style.background = 'grey';
+        }
+      });
     }
   };
+
+  const sunkShips = [];
+
+  events.subscribe('sunk', events.events, (name) => {
+    sunkShips.push(name);
+    console.log(sunkShips);
+    if (sunkShips.length === 5) {
+      console.log('game over');
+    }
+  });
 
   return { placeShip, receiveAttack, matrix };
 }

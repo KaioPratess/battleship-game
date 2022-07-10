@@ -18,6 +18,8 @@ const events = (function () {
     }
   };
 
+  console.log(events);
+
   const publish = function (eventName, data) {
     if (this.events[eventName]) {
       this.events[eventName].forEach((instance) => {

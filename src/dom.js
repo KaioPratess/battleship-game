@@ -5,6 +5,9 @@ export default (function dom() {
     grid1Div: document.querySelector('.grid-1'),
     grid2Div: document.querySelector('.grid-2'),
     randomBtn: document.querySelector('.randomize'),
+    resetGameDiv: document.querySelector('.reset-game'),
+    gameResultH2: document.querySelector('.game-result'),
+    restartButton: document.querySelector('.restart-btn'),
   };
 
   function renderBoard(matrix, div, player, array) {
@@ -19,13 +22,13 @@ export default (function dom() {
         div.append(square);
         if (player === 'player') {
           array.push(square);
-          if (matrix[i][j] === 'carrier' || matrix[i][j] === 'battleship' || matrix[i][j] === 'destroyer' || matrix[i][j] === 'submarine' || matrix[i][j] === 'patrol') {
-            square.style.background = 'brown';
+          if (matrix[i][j] === 'pcarrier' || matrix[i][j] === 'pbattleship' || matrix[i][j] === 'pdestroyer' || matrix[i][j] === 'psubmarine' || matrix[i][j] === 'ppatrol') {
+            square.style.background = 'green';
           }
         } else if (player === 'machine') {
           array.push(square);
-          if (matrix[i][j] === 'carrier' || matrix[i][j] === 'battleship' || matrix[i][j] === 'destroyer' || matrix[i][j] === 'submarine' || matrix[i][j] === 'patrol') {
-            square.style.background = 'aqua';
+          if (matrix[i][j] === 'mcarrier' || matrix[i][j] === 'mbattleship' || matrix[i][j] === 'mdestroyer' || matrix[i][j] === 'msubmarine' || matrix[i][j] === 'mpatrol') {
+            // square.style.background = 'aqua';
           }
         }
       }

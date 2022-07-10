@@ -16,6 +16,7 @@ function Ship(n, size) {
   const hit = () => {
     if (length.length < size) {
       length.push('hit');
+      console.log(length, name);
       isSunk();
     }
   };
@@ -25,12 +26,19 @@ function Ship(n, size) {
   };
 }
 
-const carrier = Ship('carrier', 5);
-const battleship = Ship('battleship', 4);
-const destroyer = Ship('destroyer', 3);
-const submarine = Ship('submarine', 3);
-const patrol = Ship('patrol', 2);
+const mcarrier = Ship('mcarrier', 5);
+const mbattleship = Ship('mbattleship', 4);
+const mdestroyer = Ship('mdestroyer', 3);
+const msubmarine = Ship('msubmarine', 3);
+const mpatrol = Ship('mpatrol', 2);
+
+const pcarrier = Ship('pcarrier', 5);
+const pbattleship = Ship('pbattleship', 4);
+const pdestroyer = Ship('pdestroyer', 3);
+const psubmarine = Ship('psubmarine', 3);
+const ppatrol = Ship('ppatrol', 2);
 
 export {
-  carrier, battleship, destroyer, submarine, patrol,
+  mcarrier, mbattleship, mdestroyer, msubmarine, mpatrol, pcarrier, pbattleship, pdestroyer,
+  psubmarine, ppatrol,
 };

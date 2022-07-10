@@ -1,6 +1,7 @@
 /* eslint-disable no-plusplus */
 import * as ships from './ship';
 import events from './pubSub';
+import dom from './dom';
 
 function GameBoard() {
   const matrix = new Array(10).fill(0).map(() => new Array(10).fill(0));
@@ -71,13 +72,21 @@ function GameBoard() {
     }
   };
 
-  const sunkShips = [];
+  const psunkShips = [];
+  const msunkShips = [];
 
   events.subscribe('sunk', events.events, (name) => {
-    sunkShips.push(name);
-    console.log(sunkShips);
-    if (sunkShips.length === 5) {
-      console.log('game over');
+    if (name.slice(0, 1) === 'p') {
+      psunkShips.push(name);
+    } else if (name.slice(0, 1) === 'm') {
+      msunkShips.push(name);
+    }
+    if (psunkShips.length === 5) {
+      dom.select.gameResultH2.textContent = 'You lost! The machine beat you';
+      dom.select.resetGameDiv.style.display = 'flex';
+    } else if (msunkShips.length === 5) {
+      dom.select.resetGameDiv.style.display = 'flex';
+      dom.select.gameResultH2.textContent = 'Congrats! You beat the Machine';
     }
   });
 

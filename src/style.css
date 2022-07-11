@@ -79,33 +79,104 @@ h1 {
   padding-bottom: 20px;
 }
 
+/* initial screen */
+.initial-screen-bg {
+  width: 100%;
+  background-color: rgba(255, 255, 255, .5);
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.initial-screen {
+  width: 800px;
+  height: 100vh;
+  background-color: grey;
+  padding: 20px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.initial-screen h2 {
+  font-size: 2rem;
+}
+
+.initial-screen p {
+  font-size: 1.5rem;
+}
+
+.positioning-div {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.y {
+  transform: rotate(90deg);
+}
+
+.x {
+  transform: rotate(360deg);
+}
+
+.initial-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+
+
+.initial-grid .square {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-btn,
+.randomize-btn,
+.reset-btn,
+.rotate-btn {
+  padding: 8px 0;
+  width: 144px;
+  font-size: 1.125rem;
+  cursor: pointer;
+}
+
 .ships {
   display: grid;
-  gap: 20px;
+  gap: 10px;
 }
 
 .ship {
-  height: 50px;
+  height: 40px;
   background-color: green;
   cursor: grab;
 }
 
-#carrier {
-  width: calc(50px * 5);
+#pcarrier {
+  width: calc(40px * 5);
 }
 
-#battleship {
-  width: calc(50px * 4);
+#pbattleship {
+  width: calc(40px * 4);
 }
 
-#destroyer {
-  width: calc(50px * 3);
+#pdestroyer {
+  width: calc(40px * 3);
 }
 
-#submarine {
-  width: calc(50px * 3);
+#psubmarine {
+  width: calc(40px * 3);
 }
 
-#patrol {
-  width: calc(50px * 2);
+#ppatrol {
+  width: calc(40px * 2);
 }

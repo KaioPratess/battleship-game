@@ -5,17 +5,18 @@ export default (function dom() {
   const select = {
     grid1Div: document.querySelector('.grid-1'),
     grid2Div: document.querySelector('.grid-2'),
-    randomBtn: document.querySelector('.randomize'),
     resetGameDiv: document.querySelector('.reset-game'),
     gameResultH2: document.querySelector('.game-result'),
     restartButton: document.querySelector('.restart-btn'),
-    ships: document.querySelectorAll('.ships'),
+    ships: document.querySelectorAll('.ship'),
+    shipsDiv: document.querySelector('.ships'),
+    initialGrid: document.querySelector('.initial-grid'),
+    randomBtn: document.querySelector('.randomize-btn'),
+    resetBtn: document.querySelector('.reset-btn'),
+    rotateBtn: document.querySelector('.rotate-btn'),
+    startBtn: document.querySelector('.start-btn'),
+    initialBg: document.querySelector('.initial-screen-bg'),
   };
-
-  select.ships.forEach((ship) => {
-    ship.addEventListener('dragstart', (event) => {
-    });
-  });
 
   function renderBoard(matrix, div, player, array) {
     select.grid1Div.textContent = '';
@@ -27,7 +28,7 @@ export default (function dom() {
         square.setAttribute('data-line', i);
         square.setAttribute('data-col', j);
         div.append(square);
-        if (player === 'player') {
+        if (player === 'player' || player === 'initial') {
           array.push(square);
           if (matrix[i][j] === 'pcarrier' || matrix[i][j] === 'pbattleship' || matrix[i][j] === 'pdestroyer' || matrix[i][j] === 'psubmarine' || matrix[i][j] === 'ppatrol') {
             square.style.background = 'green';

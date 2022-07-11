@@ -22,18 +22,32 @@
       <p>Machine</p>
       <div class="grid-2"></div>
     </div>
-    <button type="button" class="randomize">Randomize</button>
   </div>
   <div class="reset-game">
     <h2 class="game-result">Congrats! You won!</h2>
     <button class="restart-btn" type="button">Restart</button>
   </div>
-  <div class="ships">
-    <div class="ship" id="carrier" draggable="true"></div>
-    <div class="ship" id="battleship" draggable="true"></div>
-    <div class="ship" id="destroyer" draggable="true"></div>
-    <div class="ship" id="submarine" draggable="true"></div>
-    <div class="ship" id="patrol" draggable="true"></div>
+  <div class="initial-screen-bg">
+    <div class="initial-screen">
+      <h2>Welcome to Battleship game!</h2>
+      <p>Position your ships!</p>
+      <div>
+        <button type="button" class="randomize-btn">Randomize</button>
+        <button type="button" class="reset-btn">Reset</button>
+        <button type="button" class="rotate-btn">Rotate</button>
+      </div>
+      <div class="positioning-div">
+        <div class="ships">
+          <div class="ship" id="pcarrier" draggable="true" data-size="5"></div>
+          <div class="ship" id="pbattleship" draggable="true" data-size="4"></div>
+          <div class="ship" id="pdestroyer" draggable="true" data-size="3"></div>
+          <div class="ship" id="psubmarine" draggable="true" data-size="3"></div>
+          <div class="ship" id="ppatrol" draggable="true" data-size="2"></div>
+        </div>
+        <div class="initial-grid"></div>
+      </div>
+      <button type="button" class="start-btn">Start Game</button>
+    </div>
   </div>
   <footer class="footer">
     <p>Created by KaioPratess</p>

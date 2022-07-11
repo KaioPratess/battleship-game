@@ -78,3 +78,34 @@ h1 {
 .footer {
   padding-bottom: 20px;
 }
+
+.ships {
+  display: grid;
+  gap: 20px;
+}
+
+.ship {
+  height: 50px;
+  background-color: green;
+  cursor: grab;
+}
+
+#carrier {
+  width: calc(50px * 5);
+}
+
+#battleship {
+  width: calc(50px * 4);
+}
+
+#destroyer {
+  width: calc(50px * 3);
+}
+
+#submarine {
+  width: calc(50px * 3);
+}
+
+#patrol {
+  width: calc(50px * 2);
+}

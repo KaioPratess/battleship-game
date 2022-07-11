@@ -1,4 +1,5 @@
 import GameBoard from './gameboard';
+import events from './pubSub';
 
 export default (function dom() {
   const select = {
@@ -8,7 +9,13 @@ export default (function dom() {
     resetGameDiv: document.querySelector('.reset-game'),
     gameResultH2: document.querySelector('.game-result'),
     restartButton: document.querySelector('.restart-btn'),
+    ships: document.querySelectorAll('.ships'),
   };
+
+  select.ships.forEach((ship) => {
+    ship.addEventListener('dragstart', (event) => {
+    });
+  });
 
   function renderBoard(matrix, div, player, array) {
     select.grid1Div.textContent = '';

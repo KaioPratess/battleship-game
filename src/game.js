@@ -14,11 +14,11 @@ export default (function gameLoop() {
     const machineSquares = [];
 
     // place ships
-    playerBoard.placeShip(playerBoard.matrix, 'pcarrier', 5, 'x');
-    playerBoard.placeShip(playerBoard.matrix, 'pbattleship', 4, 'y');
-    playerBoard.placeShip(playerBoard.matrix, 'pdestroyer', 3, 'x');
-    playerBoard.placeShip(playerBoard.matrix, 'psubmarine', 3, 'y');
-    playerBoard.placeShip(playerBoard.matrix, 'ppatrol', 2, 'x');
+    // playerBoard.placeShip(playerBoard.matrix, 'pcarrier', 5, 'x');
+    // playerBoard.placeShip(playerBoard.matrix, 'pbattleship', 4, 'y');
+    // playerBoard.placeShip(playerBoard.matrix, 'pdestroyer', 3, 'x');
+    // playerBoard.placeShip(playerBoard.matrix, 'psubmarine', 3, 'y');
+    // playerBoard.placeShip(playerBoard.matrix, 'ppatrol', 2, 'x');
 
     function randomInteger(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -26,7 +26,6 @@ export default (function gameLoop() {
 
     dom.select.randomBtn.addEventListener('click', (event) => {
       playerBoard.matrix = new Array(10).fill(0).map(() => new Array(10).fill(0));
-      machineBoard.matrix = new Array(10).fill(0).map(() => new Array(10).fill(0));
       const axis = ['x', 'y'];
       playerBoard.placeShip(playerBoard.matrix, 'pcarrier', 5, axis[randomInteger(0, 1)]);
       playerBoard.placeShip(playerBoard.matrix, 'pbattleship', 4, axis[randomInteger(0, 1)]);
@@ -45,6 +44,44 @@ export default (function gameLoop() {
 
     dom.renderBoard(machineBoard.matrix, dom.select.grid2Div, 'machine', machineSquares);
     dom.renderBoard(playerBoard.matrix, dom.select.grid1Div, 'player', playerSquares);
+
+    playerSquares.forEach((sqr) => {
+      sqr.addEventListener('dragenter', (event) => {
+        const grid = playerBoard.matrix;
+        const name = 'carrier';
+        const axis = 'x';
+        const size = 2;
+        const line = +event.target.getAttribute('data-line');
+        const col = +event.target.getAttribute('data-col');
+        if (axis === 'x' && (size + col) <= grid[line].length) {
+          const verificationArray = [];
+          for (let i = col; i <= (size + col) - 1; i++) {
+            if (grid[line][i] === 0) {
+              verificationArray.push(0);
+            }
+          }
+          if (verificationArray.length === size && verificationArray.every((x) => x === 0)) {
+            event.preventDefault();
+            sqr.addEventListener('dragover', (event) => {
+              event.preventDefault();
+            });
+          }
+        }
+      });
+
+      sqr.addEventListener('drop', (event) => {
+        const grid = playerBoard.matrix;
+        const name = 'carrier';
+        const size = 2;
+        const line = +event.target.getAttribute('data-line');
+        const col = +event.target.getAttribute('data-col');
+        for (let i = col; i <= (size + col) - 1; i++) {
+          const squareN = `${line}${i}`;
+          grid[line][i] = name;
+          playerSquares[+squareN].style.background = 'green';
+        }
+      });
+    });
 
     // rounds
     machineSquares.forEach((sqr) => {

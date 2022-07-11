@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Battleship</title>
   <script src="./main.js" type="module" defer></script>
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/probe-10px-otf-regular" type="text/css" />
 </head>
 
 <body>
@@ -15,11 +16,11 @@
   </header>
   <div class="game-container">
     <div>
-      <p>Player</p>
+      <p>Friendly waters</p>
       <div class="grid-1"></div>
     </div>
     <div>
-      <p>Machine</p>
+      <p>Enemy waters</p>
       <div class="grid-2"></div>
     </div>
   </div>
@@ -38,11 +39,11 @@
       </div>
       <div class="positioning-div">
         <div class="ships">
-          <div class="ship" id="pcarrier" draggable="true" data-size="5"></div>
-          <div class="ship" id="pbattleship" draggable="true" data-size="4"></div>
-          <div class="ship" id="pdestroyer" draggable="true" data-size="3"></div>
-          <div class="ship" id="psubmarine" draggable="true" data-size="3"></div>
-          <div class="ship" id="ppatrol" draggable="true" data-size="2"></div>
+          <div class="ship" id="pcarrier" draggable="true" data-size="5">Carrier</div>
+          <div class="ship" id="pbattleship" draggable="true" data-size="4">Battleship</div>
+          <div class="ship" id="pdestroyer" draggable="true" data-size="3">Destroyer</div>
+          <div class="ship" id="psubmarine" draggable="true" data-size="3">Submarine</div>
+          <div class="ship" id="ppatrol" draggable="true" data-size="2">Patrol</div>
         </div>
         <div class="initial-grid"></div>
       </div>

@@ -31,13 +31,10 @@ export default (function dom() {
         if (player === 'player' || player === 'initial') {
           array.push(square);
           if (matrix[i][j] === 'pcarrier' || matrix[i][j] === 'pbattleship' || matrix[i][j] === 'pdestroyer' || matrix[i][j] === 'psubmarine' || matrix[i][j] === 'ppatrol') {
-            square.style.background = 'green';
+            square.style.background = 'grey';
           }
         } else if (player === 'machine') {
           array.push(square);
-          if (matrix[i][j] === 'mcarrier' || matrix[i][j] === 'mbattleship' || matrix[i][j] === 'mdestroyer' || matrix[i][j] === 'msubmarine' || matrix[i][j] === 'mpatrol') {
-            square.style.background = 'aqua';
-          }
         }
       }
     }

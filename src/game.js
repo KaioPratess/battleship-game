@@ -30,7 +30,7 @@ export default (function gameLoop() {
         const line = +sqr.getAttribute('data-line');
         const col = +sqr.getAttribute('data-col');
         const { background } = sqr.style;
-        if (machineBoard.matrix[line][col] === 1 || background === 'grey' || background === 'red') {
+        if (machineBoard.matrix[line][col] === 1 || background === 'blue' || background === 'red') {
           sqr.style.cursor = 'not-allowed';
           console.log('occupied');
         }

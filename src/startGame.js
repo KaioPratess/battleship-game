@@ -33,6 +33,7 @@ export default function startGame() {
     initialBoard.placeShip(initialBoard.matrix, 'ppatrol', 2, axis[randomInteger(0, 1)]);
 
     dom.renderBoard(initialBoard.matrix, dom.select.initialGrid, 'initial', initialBoardSquares);
+    dom.select.shipsDiv.style.display = 'none';
   });
 
   dom.select.resetBtn.addEventListener('click', () => {
@@ -129,13 +130,13 @@ export default function startGame() {
         for (let i = col; i <= (size + col) - 1; i++) {
           const squareN = `${line}${i}`;
           grid[line][i] = name;
-          initialBoardSquares[+squareN].style.background = 'green';
+          initialBoardSquares[+squareN].style.background = 'grey';
         }
       } else if (axis === 'y') {
         for (let i = line; i <= (size + line) - 1; i++) {
           grid[i][col] = name;
           const squareN = `${i}${col}`;
-          initialBoardSquares[+squareN].style.background = 'green';
+          initialBoardSquares[+squareN].style.background = 'grey';
         }
       }
       dom.select.ships.forEach((ship) => {

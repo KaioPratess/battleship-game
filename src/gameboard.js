@@ -64,7 +64,7 @@ function GameBoard() {
         const l = item.getAttribute('data-line');
         const c = item.getAttribute('data-col');
         if (l == line && c == col) {
-          item.style.background = 'grey';
+          item.style.background = 'blue';
         }
       });
     }

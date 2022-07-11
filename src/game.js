@@ -14,17 +14,34 @@ export default (function gameLoop() {
     const machineSquares = [];
 
     // place ships
-    playerBoard.placeShip(playerBoard.matrix, 5, 3, 'pcarrier', 5, 'x');
-    playerBoard.placeShip(playerBoard.matrix, 0, 0, 'pbattleship', 4, 'y');
-    playerBoard.placeShip(playerBoard.matrix, 0, 7, 'pdestroyer', 3, 'x');
-    playerBoard.placeShip(playerBoard.matrix, 8, 4, 'psubmarine', 3, 'x');
-    playerBoard.placeShip(playerBoard.matrix, 9, 2, 'ppatrol', 2, 'x');
+    playerBoard.placeShip(playerBoard.matrix, 'pcarrier', 5, 'x');
+    playerBoard.placeShip(playerBoard.matrix, 'pbattleship', 4, 'y');
+    playerBoard.placeShip(playerBoard.matrix, 'pdestroyer', 3, 'x');
+    playerBoard.placeShip(playerBoard.matrix, 'psubmarine', 3, 'y');
+    playerBoard.placeShip(playerBoard.matrix, 'ppatrol', 2, 'x');
 
-    machineBoard.placeShip(machineBoard.matrix, 5, 3, 'mcarrier', 5, 'x');
-    machineBoard.placeShip(machineBoard.matrix, 0, 0, 'mbattleship', 4, 'y');
-    machineBoard.placeShip(machineBoard.matrix, 0, 7, 'mdestroyer', 3, 'x');
-    machineBoard.placeShip(machineBoard.matrix, 8, 4, 'msubmarine', 3, 'x');
-    machineBoard.placeShip(machineBoard.matrix, 9, 2, 'mpatrol', 2, 'x');
+    function randomInteger(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    dom.select.randomBtn.addEventListener('click', (event) => {
+      playerBoard.matrix = new Array(10).fill(0).map(() => new Array(10).fill(0));
+      machineBoard.matrix = new Array(10).fill(0).map(() => new Array(10).fill(0));
+      const axis = ['x', 'y'];
+      playerBoard.placeShip(playerBoard.matrix, 'pcarrier', 5, axis[randomInteger(0, 1)]);
+      playerBoard.placeShip(playerBoard.matrix, 'pbattleship', 4, axis[randomInteger(0, 1)]);
+      playerBoard.placeShip(playerBoard.matrix, 'pdestroyer', 3, axis[randomInteger(0, 1)]);
+      playerBoard.placeShip(playerBoard.matrix, 'psubmarine', 3, axis[randomInteger(0, 1)]);
+      playerBoard.placeShip(playerBoard.matrix, 'ppatrol', 2, axis[randomInteger(0, 1)]);
+
+      dom.renderBoard(playerBoard.matrix, dom.select.grid1Div, 'player', playerSquares);
+    });
+
+    machineBoard.placeShip(machineBoard.matrix, 'mcarrier', 5, 'x');
+    machineBoard.placeShip(machineBoard.matrix, 'mbattleship', 4, 'y');
+    machineBoard.placeShip(machineBoard.matrix, 'mdestroyer', 3, 'x');
+    machineBoard.placeShip(machineBoard.matrix, 'msubmarine', 3, 'x');
+    machineBoard.placeShip(machineBoard.matrix, 'mpatrol', 2, 'x');
 
     dom.renderBoard(machineBoard.matrix, dom.select.grid2Div, 'machine', machineSquares);
     dom.renderBoard(playerBoard.matrix, dom.select.grid1Div, 'player', playerSquares);

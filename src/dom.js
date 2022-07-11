@@ -28,7 +28,7 @@ export default (function dom() {
         } else if (player === 'machine') {
           array.push(square);
           if (matrix[i][j] === 'mcarrier' || matrix[i][j] === 'mbattleship' || matrix[i][j] === 'mdestroyer' || matrix[i][j] === 'msubmarine' || matrix[i][j] === 'mpatrol') {
-            // square.style.background = 'aqua';
+            square.style.background = 'aqua';
           }
         }
       }

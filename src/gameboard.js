@@ -6,7 +6,9 @@ import dom from './dom';
 function GameBoard() {
   const matrix = new Array(10).fill(0).map(() => new Array(10).fill(0));
 
-  const placeShip = (grid, line, col, name, size, axis) => {
+  const placeShip = (grid, name, size, axis) => {
+    const line = Math.floor(Math.random() * 10);
+    const col = Math.floor(Math.random() * 10);
     const position = grid[line][col];
     if (position === 0) {
       if (axis === 'x' && (size + col) <= grid[line].length) {
@@ -21,8 +23,7 @@ function GameBoard() {
             grid[line][i] = name;
           }
         } else {
-          events.publish('unavailable', `${name}, ${size}, ${axis}`);
-          throw Error('unavailable');
+          placeShip(grid, name, size, axis);
         }
       } else if (axis === 'y' && (size + line) <= grid.length) {
         const verificationArray = [];
@@ -36,16 +37,13 @@ function GameBoard() {
             grid[i][col] = name;
           }
         } else {
-          events.publish('unavailable', `${name}, ${size}, ${axis}`);
-          throw Error('unavailable');
+          placeShip(grid, name, size, axis);
         }
       } else {
-        events.publish('unavailable', `${name}, ${size}, ${axis}`);
-        throw Error('unavailable');
+        placeShip(grid, name, size, axis);
       }
     } else {
-      events.publish('unavailable', `${name}, ${size}, ${axis}`);
-      throw Error('unavailable');
+      placeShip(grid, name, size, axis);
     }
   };
 

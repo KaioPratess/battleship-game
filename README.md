@@ -36,9 +36,11 @@ This project is a warship game. Strategically place your ships and prepare for b
 
 ### Built With
 
-- [ReactJs](https://reactjs.org/)
+- [HTML5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
 - [CSS3](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
-- [Vite](https://vitejs.dev/)
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+- [WebPack](https://webpack.js.org/)
+-[Babel](https://babeljs.io/)
 
 ## Features
 

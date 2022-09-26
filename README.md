@@ -40,7 +40,8 @@ This project is a warship game. Strategically place your ships and prepare for b
 - [CSS3](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
 - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 - [WebPack](https://webpack.js.org/)
--[Babel](https://babeljs.io/)
+- [Babel](https://babeljs.io/)
+- [Jest](https://jestjs.io/)
 
 ## Features
 

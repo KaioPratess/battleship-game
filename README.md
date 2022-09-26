@@ -1,5 +1,3 @@
-<h1><a href="https://kaiopratess.github.io/battleship-game/">Battleship Game</a></h1>
-
 <h1 align="center">Battleship Game</h1>
 
 <div align="center">
